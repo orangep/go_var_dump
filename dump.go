@@ -6,6 +6,8 @@ package godump
 
 import (
 	"fmt"
+	"github.com/gin-gonic/gin"
+	"net/http"
 	"reflect"
 	"strconv"
 )
@@ -76,11 +78,12 @@ func (v *variable) printIndent() {
 
 // Print to standard out the value that is passed as the argument with indentation.
 // Pointers are dereferenced.
-func Dump(v interface{}) {
+func Dump(c *gin.Context,v interface{}) {
 	val := reflect.ValueOf(v)
 	dump := &variable{indent: -1}
 	dump.dump(val, "")
-	fmt.Printf("%s", dump.Out)
+	c.String(http.StatusOK,dump.Out)
+	//fmt.Printf("%s", dump.Out)
 }
 
 // Return the value that is passed as the argument with indentation.
