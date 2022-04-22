@@ -9,7 +9,7 @@ Dumps information about a variable. Now godump is part of [zhgo](https://github.
 ## Install
 
 ```bash
-go get github.com/liudng/godump
+go get github.com/orangep/go_var_dump
 ```
 
 ## Sample code
@@ -18,16 +18,17 @@ go get github.com/liudng/godump
 package main
 
 import (
-	"github.com/liudng/godump"
+	"github.com/orangep/go_var_dump"
+	"github.com/gin-gonic/gin"
 )
 
-func main() {
+func main(c *gin.Context) {
 	a := make(map[string]int64)
 
 	a["A"] = 1
 	a["B"] = 2
 
-	godump.Dump(a)
+	godump.Dump(c,a)
 }
 ```
 
